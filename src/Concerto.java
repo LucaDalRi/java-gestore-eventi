@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +11,8 @@ public class Concerto extends Evento {
 
     public Concerto(Evento evento, LocalTime ora, BigDecimal prezzo) {
         super(evento);
-        this.ora = ora;
-        this.prezzo = prezzo;
+        this.ora = LocalTime.parse(formattaOra());
+        this.prezzo = formattaPrezzo(prezzo);
     }
 
     public LocalTime getOra() {
@@ -19,7 +20,11 @@ public class Concerto extends Evento {
     }
 
     private void setOra(LocalTime ora) {
-        this.ora = ora;
+        if (this.ora.isAfter(LocalTime.now())) {
+            this.ora = ora;
+        } else {
+            throw new DateTimeException("L'orario inserito non può essere precedente a quello attuale");
+        }
     }
 
     public BigDecimal getPrezzo() {
@@ -27,7 +32,11 @@ public class Concerto extends Evento {
     }
 
     private void setPrezzo(BigDecimal prezzo) {
-        this.prezzo = prezzo;
+        if (prezzo.intValue() > 0) {
+            this.prezzo = prezzo;
+        } else {
+            throw new RuntimeException("Prezzo non valido");
+        }
     }
 
 

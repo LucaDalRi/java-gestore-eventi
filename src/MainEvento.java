@@ -104,5 +104,7 @@ public class MainEvento {
 
         System.out.println("Ora concerto: " + concerto.getOra());
 
+        s1.close();
+
     }
 }

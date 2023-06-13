@@ -69,7 +69,7 @@ public class Evento {
 
     private LocalDate formattatoreData(LocalDate data) {
 
-        String localDate = String.valueOf(LocalDate.now());
+        String localDate = String.valueOf(data);
 
         DateTimeFormatter formattatore = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -88,7 +88,9 @@ public class Evento {
     public void disdici(int n) {
 
         if (this.data.isBefore(LocalDate.now()) && this.postiPrenotati > 0) {
-            this.postiPrenotati -= n;
+            for (int i = 0; i < n; i++) {
+                this.postiPrenotati--;
+            }
         }
     }
 

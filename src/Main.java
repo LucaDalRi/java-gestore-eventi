@@ -37,9 +37,14 @@ public class Main {
 
             int nrPrenotati = s1.nextInt();
 
-            evento.prenota(nrPrenotati);
+            if ((evento.getPostiPrenotati() + nrPrenotati) < evento.getPostiTotali()) {
 
-            System.out.println("Posti prenotati totali: " + evento.getPostiPrenotati());
+                evento.prenota(nrPrenotati);
+
+                System.out.println("Posti prenotati totali: " + evento.getPostiPrenotati());
+            } else {
+                throw new RuntimeException("non puoi superare i posti massimi consentiti");
+            }
 
         } else {
             System.out.println("Nessuna prenotazione effettuata");

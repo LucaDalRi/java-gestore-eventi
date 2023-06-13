@@ -10,7 +10,7 @@ public class Evento {
 
     public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
         this.titolo = titolo;
-        this.data = data;
+        this.data = formattatoreData(data);
         this.postiTotali = postiTotali;
         this.postiPrenotati = postiPrenotati;
     }

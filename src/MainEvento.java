@@ -1,7 +1,9 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
-public class Main {
+public class MainEvento {
 
     public static void main(String[] args) {
 
@@ -87,5 +89,20 @@ public class Main {
             System.out.println("Posti disponibili " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
 
         }
+
+        System.out.println("A che ora è il concerto? H:M");
+
+        LocalTime ora = LocalTime.parse(s1.next());
+
+        System.out.print("Inserisci il prezzo del concerto");
+
+        BigDecimal prezzo = s1.nextBigDecimal();
+
+        Concerto concerto = new Concerto(evento, ora, prezzo);
+
+        System.out.println("Prezzo concerto: " + concerto.getPrezzo());
+
+        System.out.println("Ora concerto: " + concerto.getOra());
+
     }
 }

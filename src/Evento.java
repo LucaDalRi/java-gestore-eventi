@@ -15,6 +15,13 @@ public class Evento {
         this.postiPrenotati = postiPrenotati;
     }
 
+    public Evento(Evento evento) {
+        this.titolo = evento.titolo;
+        this.data = evento.data;
+        this.postiTotali = evento.postiTotali;
+        this.postiPrenotati = evento.postiPrenotati;
+    }
+
     public LocalDate setData(LocalDate data) {
 
         try {

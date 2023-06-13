@@ -47,7 +47,11 @@ public class Main {
             }
 
         } else {
-            System.out.println("Nessuna prenotazione effettuata");
+            System.out.println("Nessuna ulteriore prenotazione effettuata");
+
+            System.out.println("Posti prenotati " + evento.getPostiPrenotati());
+
+            System.out.println("Posti disponibili " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
         }
     }
 }

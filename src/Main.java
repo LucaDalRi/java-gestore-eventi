@@ -74,10 +74,18 @@ public class Main {
 
                 System.out.println("Posti ancora disponibili: " + (evento.getPostiTotali() - (evento.getPostiPrenotati() - nrDisdette)));
 
+            } else {
+                throw new RuntimeException("Le disdette non possono essere più delle prenotazioni!");
             }
 
+        } else {
+
+            System.out.println("Nessuna ulteriore disdetta effettuata");
+
+            System.out.println("Posti prenotati " + evento.getPostiPrenotati());
+
+            System.out.println("Posti disponibili " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
+
         }
-
-
     }
 }

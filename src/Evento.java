@@ -79,7 +79,9 @@ public class Evento {
     public void prenota(int n) {
 
         if (this.postiPrenotati < this.postiTotali && data.isAfter(LocalDate.now())) {
-            this.postiPrenotati = this.postiPrenotati + n;
+            for (int i = 0; i < n; i++) {
+                this.postiPrenotati++;
+            }
         }
     }
 

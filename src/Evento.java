@@ -10,7 +10,7 @@ public class Evento {
 
     public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
         this.titolo = titolo;
-        this.data = setData(data);
+        this.data = data;
         this.postiTotali = setPostiTotali(postiTotali);
         this.postiPrenotati = 0;
     }
@@ -18,7 +18,7 @@ public class Evento {
     public LocalDate setData(LocalDate data) {
 
         try {
-            if (data.isAfter(formattatoreData())) {
+            if (data.isAfter(formattatoreData(LocalDate.now()))) {
                 this.data = data;
             }
         } catch (Exception e) {
@@ -61,24 +61,26 @@ public class Evento {
 
     // METODI
 
-    private LocalDate formattatoreData() {
+    private LocalDate formattatoreData(LocalDate data) {
 
-        LocalDate localDate = LocalDate.now();
+        String localDate = String.valueOf(LocalDate.now());
 
-        return (LocalDate.parse(localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+        DateTimeFormatter formattatore = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        return LocalDate.parse(localDate, formattatore);
     }
 
-    public void prenota() {
+    public void prenota(int n) {
 
-        if (this.postiPrenotati < this.postiTotali && data.isAfter(formattatoreData())) {
-            this.postiPrenotati++;
+        if (this.postiPrenotati < this.postiTotali && data.isAfter(LocalDate.now())) {
+            this.postiPrenotati += n;
         }
     }
 
-    public void disdici() {
+    public void disdici(int n) {
 
-        if (this.data.isBefore(formattatoreData()) && this.postiPrenotati > 0) {
-            this.postiPrenotati--;
+        if (this.data.isBefore(LocalDate.now()) && this.postiPrenotati > 0) {
+            this.postiPrenotati -= n;
         }
     }
 

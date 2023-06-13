@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
 
@@ -16,10 +17,8 @@ public class Evento {
 
     public LocalDate setData(LocalDate data) {
 
-        LocalDate localDate = LocalDate.now();
-
         try {
-            if (data.isAfter(localDate)) {
+            if (data.isAfter(formattatoreData())) {
                 this.data = data;
             }
         } catch (Exception e) {
@@ -57,5 +56,38 @@ public class Evento {
 
     public int getPostiPrenotati() {
         return postiPrenotati;
+    }
+
+
+    // METODI
+
+    private LocalDate formattatoreData() {
+
+        LocalDate localDate = LocalDate.now();
+
+        return (LocalDate.parse(localDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+    }
+
+    public void prenota() {
+
+        if (this.postiPrenotati < this.postiTotali && data.isAfter(formattatoreData())) {
+            this.postiPrenotati++;
+        }
+    }
+
+    public void disdici() {
+
+        if (this.data.isBefore(formattatoreData()) && this.postiPrenotati > 0) {
+            this.postiPrenotati--;
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "titolo='" + titolo + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

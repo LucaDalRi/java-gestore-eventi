@@ -11,8 +11,8 @@ public class Evento {
     public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
         this.titolo = titolo;
         this.data = data;
-        this.postiTotali = setPostiTotali(postiTotali);
-        this.postiPrenotati = 0;
+        this.postiTotali = postiTotali;
+        this.postiPrenotati = postiPrenotati;
     }
 
     public LocalDate setData(LocalDate data) {
@@ -25,17 +25,6 @@ public class Evento {
             throw new RuntimeException("Data errata!");
         }
         return data;
-    }
-
-    private int setPostiTotali(int postiTotali) {
-        try {
-            if (postiTotali > 0) {
-                this.postiTotali = postiTotali;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Dato errato!");
-        }
-        return postiTotali;
     }
 
     public String getTitolo() {
@@ -52,6 +41,16 @@ public class Evento {
 
     public int getPostiTotali() {
         return postiTotali;
+    }
+
+    private void setPostiTotali(int postiTotali) {
+        try {
+            if (postiTotali > 0) {
+                this.postiTotali = postiTotali;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Dato errato!");
+        }
     }
 
     public int getPostiPrenotati() {
@@ -73,7 +72,7 @@ public class Evento {
     public void prenota(int n) {
 
         if (this.postiPrenotati < this.postiTotali && data.isAfter(LocalDate.now())) {
-            this.postiPrenotati += n;
+            this.postiPrenotati = this.postiPrenotati + n;
         }
     }
 

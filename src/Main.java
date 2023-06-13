@@ -13,7 +13,7 @@ public class Main {
 
         String titoloEvento = s1.nextLine();
 
-        System.out.println("Inserisci la data: anno/giorno/mese");
+        System.out.println("Inserisci la data: anno-giorno-mese");
 
         LocalDate dataEvento = LocalDate.parse(s1.nextLine());
 
@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println("Vuoi prenotare dei posti? si / no");
 
-        String sceltaUtente = s1.nextLine();
+        String sceltaUtente = s1.next();
 
         if (sceltaUtente.equals("si")) {
 
@@ -38,6 +38,8 @@ public class Main {
             int nrPrenotati = s1.nextInt();
 
             evento.prenota(nrPrenotati);
+
+            System.out.println("Posti prenotati totali: " + evento.getPostiPrenotati());
 
         } else {
             System.out.println("Nessuna prenotazione effettuata");

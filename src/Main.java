@@ -29,9 +29,9 @@ public class Main {
 
         System.out.println("Vuoi prenotare dei posti? si / no");
 
-        String sceltaUtente = s1.next();
+        String sceltaUtentePrenotazione = s1.next();
 
-        if (sceltaUtente.equals("si")) {
+        if (sceltaUtentePrenotazione.equals("si")) {
 
             System.out.println("Quanti posti vuoi prenotare?");
 
@@ -53,5 +53,31 @@ public class Main {
 
             System.out.println("Posti disponibili " + (evento.getPostiTotali() - evento.getPostiPrenotati()));
         }
+
+        System.out.print("Vuoi disdire una o più prenotazioni? si / no");
+
+        String sceltaUntenteDisdetta = s1.next();
+
+        if (sceltaUntenteDisdetta.equals("si")) {
+
+            System.out.println("Quante prenotazioni vuoi disdire?");
+
+            int nrDisdette = s1.nextInt();
+
+            if ((evento.getPostiPrenotati() - nrDisdette) > 0) {
+
+                evento.disdici(nrDisdette);
+
+                System.out.println("Hai disdetto " + nrDisdette + " posti");
+
+                System.out.println("Prenotazioni ancora attive: " + (evento.getPostiPrenotati() - nrDisdette));
+
+                System.out.println("Posti ancora disponibili: " + (evento.getPostiTotali() - (evento.getPostiPrenotati() - nrDisdette)));
+
+            }
+
+        }
+
+
     }
 }

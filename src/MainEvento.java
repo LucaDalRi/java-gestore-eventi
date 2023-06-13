@@ -17,7 +17,7 @@ public class MainEvento {
 
         System.out.println("Inserisci la data: anno-giorno-mese");
 
-        LocalDate dataEvento = LocalDate.parse(s1.nextLine());
+        LocalDate dataEvento = LocalDate.parse(s1.next());
 
         System.out.println("Inserisci i posti totali per l'evento");
 
